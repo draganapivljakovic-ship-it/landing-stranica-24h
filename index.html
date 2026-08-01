@@ -387,6 +387,7 @@
             body: data
           });
           if (response.ok) {
+            fbq('track', 'Lead');
             window.location.href = 'https://landing-stranica-24h.digitalnaradionica.workers.dev/hvala.html';
           } else {
             alert('Došlo je do greške. Pokušajte ponovo.');
