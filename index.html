@@ -1,415 +1,431 @@
 <!DOCTYPE html>
 <html lang="sr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Upitnik za izradu landing stranice — Digitalna Radionica</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1599043251568249');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1599043251568249&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
-
-<style>
-  :root{--primary:#14B8A6;--dark:#0F766E;--text:#111827;--muted:#6B7280;--soft-bg:#F5F5F2;--border:#E5E7EB;--white:#FFFFFF;}
-  *{box-sizing:border-box;}
-  body{margin:0;font-family:'Inter',sans-serif;color:var(--text);background:var(--soft-bg);line-height:1.5;}
-  .wrap{max-width:800px;margin:0 auto;padding:32px 20px 80px;}
-  header{margin-bottom:28px;}
-  .brand{font-weight:700;color:var(--dark);font-size:14px;letter-spacing:0.04em;text-transform:uppercase;}
-  .brand-sub{color:var(--muted);font-size:13px;margin-top:2px;}
-  h1{font-weight:700;font-size:28px;margin:16px 0 8px;}
-  .intro{color:var(--muted);font-size:14px;margin:0;}
-  .progress-wrap{position:sticky;top:0;background:var(--soft-bg);padding:12px 0;z-index:10;}
-  .progress-bar{height:6px;background:var(--border);border-radius:999px;overflow:hidden;}
-  .progress-fill{height:100%;background:var(--primary);width:0%;transition:width 0.2s ease;}
-  .progress-label{font-size:12px;color:var(--muted);margin-top:6px;}
-  section.card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:16px;}
-  .badge{display:inline-flex;align-items:center;gap:8px;background:var(--soft-bg);color:var(--dark);font-weight:700;font-size:15px;padding:6px 14px;border-radius:999px;margin-bottom:16px;}
-  .q{margin-bottom:18px;}.q:last-child{margin-bottom:0;}
-  label.qlabel{display:block;font-weight:600;font-size:14px;margin-bottom:6px;color:var(--text);}
-  .hint{font-size:12px;color:var(--muted);margin-bottom:8px;font-style:italic;}
-  input[type="text"],input[type="email"],input[type="tel"],textarea,select{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-family:'Inter',sans-serif;font-size:14px;color:var(--text);background:var(--white);}
-  textarea{resize:vertical;min-height:70px;overflow:hidden;}
-  input:focus,textarea:focus,select:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(20,184,166,0.15);}
-  .options{display:flex;flex-direction:column;gap:8px;}
-  .opt{display:flex;align-items:flex-start;gap:8px;padding:10px 12px;border:1px solid var(--border);border-radius:8px;cursor:pointer;transition:border-color 0.15s,background 0.15s;}
-  .opt:hover{border-color:var(--primary);}
-  .opt input{margin-top:2px;accent-color:var(--primary);width:16px;height:16px;flex-shrink:0;}
-  .opt-text{font-size:14px;}
-  .opt-cta{display:block;font-size:12px;color:var(--muted);font-style:italic;margin-top:2px;}
-  .opt.checked{border-color:var(--primary);background:rgba(20,184,166,0.06);}
-  .other-input{margin-top:8px;}
-  .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-  @media(max-width:560px){.row2{grid-template-columns:1fr;}}
-  .footer-note{background:var(--soft-bg);border:1px solid var(--border);border-radius:12px;padding:18px 20px;font-size:13px;color:var(--muted);margin-bottom:20px;}
-  .submit-btn{display:block;width:100%;padding:16px;background:var(--primary);color:var(--white);border:none;border-radius:10px;font-family:'Inter',sans-serif;font-weight:700;font-size:16px;cursor:pointer;transition:background 0.15s;}
-  .submit-btn:hover{background:var(--dark);}
-  .result-wrap{display:none;margin-top:20px;}.result-wrap.show{display:block;}
-  .result-card{background:var(--white);border:2px solid var(--primary);border-radius:12px;padding:24px;}
-  .result-card h2{margin-top:0;font-size:18px;color:var(--dark);}
-  .result-hint{font-size:13px;color:var(--muted);margin-bottom:14px;}
-  .send-status{font-size:14px;font-weight:600;padding:10px 14px;border-radius:8px;margin:0 0 12px;}
-  .send-status.success{background:rgba(20,184,166,0.12);color:var(--dark);}
-  .send-status.error{background:#FEF2F2;color:#DC2626;}
-  #resultText{width:100%;min-height:200px;font-family:'Menlo','Consolas',monospace;font-size:12.5px;padding:14px;border:1px solid var(--border);border-radius:8px;white-space:pre-wrap;background:var(--soft-bg);overflow:hidden;resize:vertical;}
-  .copy-btn{margin-top:12px;display:inline-flex;align-items:center;gap:8px;background:var(--dark);color:var(--white);border:none;padding:10px 18px;border-radius:8px;font-family:'Inter',sans-serif;font-weight:600;font-size:14px;cursor:pointer;}
-  .copy-btn:hover{opacity:0.9;}
-  .copy-confirm{font-size:13px;color:var(--dark);font-weight:600;margin-left:10px;opacity:0;transition:opacity 0.2s;}.copy-confirm.show{opacity:1;}
-  .required{color:#DC2626;}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landing stranica za 24h — samo 6.000 din | Digitalna radionica</title>
+  <meta name="description" content="Dobij modernu landing stranicu za 24h za samo 6.000 dinara. Plati 500 din, mi radimo. Sviđa ti se? Doplati ostatak. Ne sviđa? Zadržavamo depozit. Digitalna radionica.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='16' fill='%2314B8A6'/><text y='.9em' font-size='70' x='12'>⚡</text></svg>">
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1599043251568249');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1599043251568249&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --primary: #14B8A6; --primary-dark: #0F766E; --primary-light: #CCFBF1;
+      --primary-xlight: #F0FDF9; --text: #111827; --muted: #6B7280;
+      --bg-soft: #F5F5F2; --white: #FFFFFF; --border: #E5E7EB;
+      --radius: 12px; --shadow: 0 4px 24px rgba(0,0,0,0.08); --shadow-lg: 0 12px 48px rgba(0,0,0,0.12);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 24px; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 700; font-size: 17px; color: var(--text); }
+    .nav-logo img { height: 36px; width: auto; }
+    .nav-cta { background: var(--primary); color: var(--white); border: none; border-radius: 8px; padding: 10px 20px; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; text-decoration: none; transition: background 0.2s, transform 0.15s; white-space: nowrap; }
+    .nav-cta:hover { background: var(--primary-dark); transform: translateY(-1px); }
+    .hero { background: linear-gradient(135deg, #0F2027 0%, #1a3a3a 50%, #0F766E 100%); color: var(--white); padding: 80px 24px 72px; text-align: center; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(20,184,166,0.25) 0%, transparent 70%); pointer-events: none; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(20,184,166,0.15); border: 1px solid rgba(20,184,166,0.4); border-radius: 100px; padding: 6px 16px; font-size: 13px; font-weight: 600; color: #5EEAD4; margin-bottom: 28px; letter-spacing: 0.02em; }
+    .hero h1 { font-size: clamp(32px, 5vw, 58px); font-weight: 800; line-height: 1.13; max-width: 800px; margin: 0 auto 20px; letter-spacing: -0.02em; }
+    .hero h1 .accent { color: #5EEAD4; }
+    .hero-sub { font-size: clamp(16px, 2.2vw, 19px); color: rgba(255,255,255,0.75); max-width: 560px; margin: 0 auto 36px; line-height: 1.65; }
+    .hero-cta-group { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 52px; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--primary); color: var(--white); text-decoration: none; font-weight: 700; font-size: 16px; padding: 16px 32px; border-radius: 10px; transition: background 0.2s, transform 0.15s, box-shadow 0.2s; box-shadow: 0 4px 20px rgba(20,184,166,0.45); }
+    .btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(20,184,166,0.5); }
+    .btn-secondary { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.1); color: var(--white); text-decoration: none; font-weight: 600; font-size: 15px; padding: 15px 28px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2); transition: background 0.2s; }
+    .btn-secondary:hover { background: rgba(255,255,255,0.18); }
+    .hero-stats { display: flex; justify-content: center; gap: clamp(24px, 5vw, 64px); flex-wrap: wrap; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); }
+    .hero-stat { text-align: center; }
+    .hero-stat .num { font-size: clamp(24px, 4vw, 36px); font-weight: 800; color: #5EEAD4; display: block; line-height: 1; margin-bottom: 4px; }
+    .hero-stat .lbl { font-size: 13px; color: rgba(255,255,255,0.6); font-weight: 500; }
+    section { padding: 80px 24px; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    .section-label { font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--primary-dark); margin-bottom: 12px; }
+    .section-title { font-size: clamp(26px, 3.5vw, 40px); font-weight: 800; line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 16px; }
+    .section-sub { font-size: 17px; color: var(--muted); max-width: 560px; line-height: 1.65; }
+    .text-center { text-align: center; }
+    .text-center .section-sub { margin: 0 auto; }
+    .how-bg { background: var(--bg-soft); }
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; margin-top: 56px; }
+    .step-card { background: var(--white); border-radius: var(--radius); padding: 32px 28px; box-shadow: var(--shadow); }
+    .step-num { width: 40px; height: 40px; border-radius: 50%; background: var(--primary-light); color: var(--primary-dark); font-size: 16px; font-weight: 800; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+    .step-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+    .step-card p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+    .step-card .step-amount { margin-top: 16px; background: var(--primary-xlight); border-radius: 8px; padding: 10px 14px; font-size: 14px; font-weight: 600; color: var(--primary-dark); }
+    .offer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; margin-top: 56px; }
+    @media (max-width: 768px) { .offer-grid { grid-template-columns: 1fr; } }
+    .offer-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
+    .offer-list li { display: flex; align-items: flex-start; gap: 14px; font-size: 16px; line-height: 1.55; }
+    .offer-list li .icon { width: 28px; height: 28px; border-radius: 50%; background: var(--primary-light); color: var(--primary-dark); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 14px; margin-top: 1px; }
+    .price-card { background: linear-gradient(135deg, var(--primary-dark) 0%, #0a5c54 100%); color: var(--white); border-radius: 20px; padding: 40px 36px; text-align: center; box-shadow: var(--shadow-lg); }
+    .price-card .tag { display: inline-block; background: rgba(255,255,255,0.15); border-radius: 100px; padding: 4px 14px; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20px; color: #A7F3D0; }
+    .price-card .price-big { font-size: clamp(40px, 6vw, 60px); font-weight: 800; line-height: 1; margin-bottom: 4px; }
+    .price-card .price-sub { font-size: 14px; color: rgba(255,255,255,0.65); margin-bottom: 28px; }
+    .price-breakdown { background: rgba(255,255,255,0.08); border-radius: 12px; overflow: hidden; margin-bottom: 28px; }
+    .price-row { display: flex; justify-content: space-between; align-items: center; padding: 14px 18px; font-size: 14px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .price-row:last-child { border-bottom: none; }
+    .price-row .label { color: rgba(255,255,255,0.75); }
+    .price-row .amount { font-weight: 700; }
+    .price-row .amount.highlight { color: #5EEAD4; }
+    .guarantee { background: rgba(255,255,255,0.08); border-radius: 10px; padding: 14px 18px; font-size: 13px; color: rgba(255,255,255,0.75); line-height: 1.5; }
+    .payment-bg { background: var(--bg-soft); }
+    .payment-box { background: var(--white); border-radius: 16px; border: 2px solid var(--primary-light); padding: 40px; max-width: 680px; margin: 48px auto 0; box-shadow: var(--shadow); }
+    .payment-box h3 { font-size: 20px; font-weight: 700; margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
+    .payment-fields { display: flex; flex-direction: column; gap: 14px; }
+    .payment-row { display: flex; justify-content: space-between; padding: 14px 16px; background: var(--bg-soft); border-radius: 8px; gap: 12px; flex-wrap: wrap; }
+    .payment-row .key { font-size: 13px; color: var(--muted); font-weight: 500; min-width: 110px; }
+    .payment-row .val { font-size: 14px; font-weight: 700; color: var(--text); text-align: right; word-break: break-all; }
+    .payment-note { margin-top: 20px; background: var(--primary-xlight); border-left: 3px solid var(--primary); border-radius: 6px; padding: 14px 16px; font-size: 14px; color: var(--primary-dark); line-height: 1.55; }
+    .copy-btn { background: none; border: 1px solid var(--primary); color: var(--primary-dark); border-radius: 6px; padding: 3px 10px; font-size: 12px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; transition: background 0.15s; white-space: nowrap; }
+    .copy-btn:hover { background: var(--primary-light); }
+    .copy-btn.copied { color: #059669; border-color: #059669; }
+    .examples-bg { background: var(--bg-soft); }
+    .examples-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; margin-top: 52px; }
+    .example-card { background: var(--white); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
+    .example-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .example-browser { background: #F3F4F6; padding: 10px 12px 0; border-bottom: 1px solid var(--border); }
+    .browser-dots { display: flex; gap: 5px; margin-bottom: 8px; }
+    .browser-dots span { width: 10px; height: 10px; border-radius: 50%; }
+    .browser-dots .d1 { background: #FF5F57; } .browser-dots .d2 { background: #FFBD2E; } .browser-dots .d3 { background: #28C840; }
+    .example-img { width: 100%; height: 200px; object-fit: cover; object-position: top; display: block; }
+    .example-info { padding: 16px 18px; }
+    .example-type { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary-dark); background: var(--primary-light); border-radius: 4px; padding: 2px 8px; display: inline-block; margin-bottom: 8px; }
+    .example-info h3 { font-size: 15px; font-weight: 700; color: var(--text); }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 52px; }
+    .testimonial-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow); }
+    .stars { color: #F59E0B; font-size: 16px; margin-bottom: 14px; letter-spacing: 2px; }
+    .testimonial-card p { font-size: 15px; color: var(--muted); line-height: 1.65; font-style: italic; margin-bottom: 20px; }
+    .testimonial-author { display: flex; align-items: center; gap: 12px; }
+    .author-avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; font-weight: 700; font-size: 15px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .author-name { font-size: 14px; font-weight: 700; }
+    .author-biz { font-size: 12px; color: var(--muted); }
+    .form-section { background: var(--bg-soft); }
+    .form-wrapper { max-width: 560px; margin: 48px auto 0; background: var(--white); border-radius: 20px; padding: 48px 40px; box-shadow: var(--shadow-lg); }
+    @media (max-width: 540px) { .form-wrapper { padding: 32px 24px; } }
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 7px; }
+    .form-group input { width: 100%; padding: 13px 16px; border: 1.5px solid var(--border); border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 15px; color: var(--text); background: var(--white); transition: border-color 0.2s, box-shadow 0.2s; outline: none; }
+    .form-group input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(20,184,166,0.12); }
+    .form-group input::placeholder { color: #9CA3AF; }
+    .form-submit { width: 100%; background: var(--primary); color: var(--white); border: none; border-radius: 10px; padding: 16px 24px; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 700; cursor: pointer; transition: background 0.2s, transform 0.15s; margin-top: 8px; }
+    .form-submit:hover { background: var(--primary-dark); transform: translateY(-1px); }
+    .form-note { font-size: 13px; color: var(--muted); text-align: center; margin-top: 14px; line-height: 1.5; }
+    .honeypot { display: none !important; }
+    .final-cta { background: linear-gradient(135deg, #0F2027 0%, #1a3a3a 50%, #0F766E 100%); color: var(--white); text-align: center; padding: 88px 24px; position: relative; overflow: hidden; }
+    .final-cta::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 80% at 50% 100%, rgba(20,184,166,0.2) 0%, transparent 70%); }
+    .final-cta .section-title { color: var(--white); }
+    .final-cta p { font-size: 18px; color: rgba(255,255,255,0.7); max-width: 520px; margin: 0 auto 40px; line-height: 1.6; }
+    .final-cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn-white { display: inline-flex; align-items: center; gap: 8px; background: var(--white); color: var(--primary-dark); text-decoration: none; font-weight: 700; font-size: 16px; padding: 16px 32px; border-radius: 10px; transition: transform 0.15s, box-shadow 0.2s; box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.25); }
+    footer { background: #0d1f1e; color: rgba(255,255,255,0.7); padding: 48px 24px; text-align: center; }
+    .footer-logo { display: inline-flex; align-items: center; gap: 10px; font-size: 18px; font-weight: 700; color: var(--white); text-decoration: none; margin-bottom: 20px; }
+    .footer-logo img { height: 32px; }
+    footer p { font-size: 14px; line-height: 1.6; margin-bottom: 6px; }
+    footer a { color: #5EEAD4; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    .footer-divider { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 28px auto; max-width: 400px; }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.35); }
+    .whatsapp-btn { position: fixed; bottom: 28px; right: 28px; z-index: 999; width: 58px; height: 58px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(37,211,102,0.45); text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; }
+    .whatsapp-btn:hover { transform: scale(1.1); box-shadow: 0 8px 28px rgba(37,211,102,0.55); }
+    .whatsapp-btn svg { width: 30px; height: 30px; fill: white; }
+    @media (max-width: 640px) { section { padding: 60px 20px; } .hero { padding: 60px 20px 56px; } .payment-box { padding: 28px 20px; } .steps { grid-template-columns: 1fr; } }
+  </style>
 </head>
 <body>
-<div class="wrap">
-  <header>
-    <div class="brand">Digitalna Radionica</div>
-    <div class="brand-sub">digitalnaradionica.rs · office@digitalnaradionica.rs</div>
-    <h1>Upitnik za izradu landing stranice</h1>
-    <p class="intro">Popunite što detaljnije možete. Na kraju kliknite "Generiši rezime" i kopirajte tekst — to je sve što je potrebno da krenemo u izradu.</p>
-  </header>
-  <div class="progress-wrap">
-    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-    <div class="progress-label" id="progressLabel">0% popunjeno</div>
+<nav>
+  <div class="nav-inner">
+    <a href="https://www.digitalnaradionica.rs" class="nav-logo">
+      <img src="https://www.digitalnaradionica.rs/wp-content/uploads/2026/05/Logo-2-1.png.webp" alt="Digitalna radionica logo" onerror="this.style.display='none'">
+      <span>Digitalna radionica</span>
+    </a>
+    <a href="https://draganapivljakovic-ship-it.github.io/landing-stranica-24h/" class="nav-cta" target="_blank" rel="noopener">Pokreni projekat ⚡</a>
   </div>
-  <form id='upitnik' method='POST'>
-    <!-- Web3Forms -->
-    <input type="hidden" name="access_key" value="7fb73288-70d2-4f86-aea4-52f2188ad34a">
-    <input type="hidden" name="subject" value="Novi upitnik za landing stranicu — Digitalna Radionica">
-    <input type="hidden" name="from_name" value="Digitalna Radionica Upitnik">
-    <!-- Spam zaštita -->
-    <p style="position:absolute;left:-9999px;"><label>Ne popunjavajte: <input name="botcheck"></label></p>
-    <input type="hidden" name="rezime" id="rezimeField">
-
-    <section class="card">
-      <div class="badge">1. Osnovni podaci o biznisu</div>
-      <div class="q"><label class="qlabel">Naziv firme / brenda <span class="required">*</span></label><input type="text" name="naziv_firme" data-track></div>
-      <div class="q"><label class="qlabel">Čime se bavite (kratak opis delatnosti)</label><textarea name="delatnost" data-track></textarea></div>
-      <div class="row2">
-        <div class="q"><label class="qlabel">Web sajt (ako postoji)</label><input type="text" name="web_sajt" data-track></div>
-        <div class="q"><label class="qlabel">Telefon</label><input type="tel" name="telefon" data-track></div>
-      </div>
-      <div class="q"><label class="qlabel">Kontakt osoba i mejl <span class="required">*</span></label><input type="text" name="kontakt" data-track></div>
-    </section>
-
-    <section class="card">
-      <div class="badge">2. Cilj landing stranice</div>
-      <div class="q">
-        <label class="qlabel">Šta je glavni cilj stranice? <span class="required">*</span></label>
-        <div class="options">
-          <label class="opt"><input type="radio" name="cilj" value="Prikupljanje upita/leadova (forma za kontakt)" data-track><span class="opt-text">Prikupljanje upita/leadova (forma za kontakt)<span class="opt-cta">Predlog CTA: "Pošalji upit" / "Zatraži ponudu"</span></span></label>
-          <label class="opt"><input type="radio" name="cilj" value="Prodaja proizvoda/usluge direktno" data-track><span class="opt-text">Prodaja proizvoda/usluge direktno<span class="opt-cta">Predlog CTA: "Kupi odmah" / "Poruči sada"</span></span></label>
-          <label class="opt"><input type="radio" name="cilj" value="Zakazivanje termina/poziva (npr. Calendly)" data-track><span class="opt-text">Zakazivanje termina/poziva (npr. Calendly)<span class="opt-cta">Predlog CTA: "Zakaži besplatan razgovor"</span></span></label>
-          <label class="opt"><input type="radio" name="cilj" value="Preuzimanje besplatnog sadržaja (e-book, vodič, popust)" data-track><span class="opt-text">Preuzimanje besplatnog sadržaja<span class="opt-cta">Predlog CTA: "Preuzmi besplatno"</span></span></label>
-          <label class="opt"><input type="radio" name="cilj" value="Najava događaja/akcije" data-track><span class="opt-text">Najava događaja/akcije<span class="opt-cta">Predlog CTA: "Prijavi se" / "Rezerviši mesto"</span></span></label>
-          <label class="opt"><input type="radio" name="cilj" value="Drugo" data-track><span class="opt-text">Drugo</span></label>
-        </div>
-        <input type="text" class="other-input" name="cilj_drugo" placeholder="Upišite ako ste izabrali 'Drugo'" data-track>
-      </div>
-      <div class="q">
-        <label class="qlabel">Odakle će dolaziti posetioci?</label>
-        <div class="options">
-          <label class="opt"><input type="checkbox" name="izvor" value="Facebook/Instagram oglasi" data-track><span class="opt-text">Facebook / Instagram oglasi</span></label>
-          <label class="opt"><input type="checkbox" name="izvor" value="Google oglasi" data-track><span class="opt-text">Google oglasi</span></label>
-          <label class="opt"><input type="checkbox" name="izvor" value="Organski (društvene mreže, preporuke)" data-track><span class="opt-text">Organski (društvene mreže, preporuke)</span></label>
-          <label class="opt"><input type="checkbox" name="izvor" value="Email lista" data-track><span class="opt-text">Email lista</span></label>
-        </div>
-      </div>
-    </section>
-
-    <section class="card">
-      <div class="badge">3. Ciljna publika</div>
-      <div class="q"><label class="qlabel">Kome je stranica namenjena? (starost, pol, lokacija, interesovanja)</label><textarea name="publika" data-track></textarea></div>
-      <div class="q"><label class="qlabel">Koji je najveći problem/potreba koju rešavate kod klijenta?</label><textarea name="problem" data-track></textarea></div>
-    </section>
-
-    <section class="card">
-      <div class="badge">4. Ponuda</div>
-      <div class="q"><label class="qlabel">Šta tačno nudite na ovoj stranici? <span class="required">*</span></label><textarea name="ponuda" data-track></textarea></div>
-      <div class="q"><label class="qlabel">Cena / paketi (ako se prikazuju)</label><textarea name="cena" data-track></textarea></div>
-      <div class="q"><label class="qlabel">Rok ili ograničena ponuda (popust, broj mesta, datum isteka)</label><input type="text" name="rok_ponude" data-track></div>
-      <div class="q"><label class="qlabel">Šta vas izdvaja od konkurencije? (2-3 prednosti)</label><textarea name="prednosti" data-track></textarea></div>
-    </section>
-
-    <section class="card">
-      <div class="badge">4.5 Sadržaj stranice</div>
-      <div class="q"><label class="qlabel">Šta sve od informacija treba da se nađe na sajtu?</label><div class="hint">Npr. o firmi, usluge/proizvodi, cene, radno vreme, lokacija, recenzije, FAQ, društvene mreže, tim, galerija slika...</div><textarea name="sadrzaj_sajta" data-track></textarea></div>
-    </section>
-
-    <section class="card">
-      <div class="badge">5. Poverenje i dokazi</div>
-      <div class="options">
-        <label class="opt"><input type="checkbox" name="dokazi" value="Izjave/recenzije klijenata" data-track><span class="opt-text">Izjave/recenzije zadovoljnih klijenata</span></label>
-        <label class="opt"><input type="checkbox" name="dokazi" value="Brojke/rezultati" data-track><span class="opt-text">Brojke/rezultati (broj klijenata, godine rada)</span></label>
-        <label class="opt"><input type="checkbox" name="dokazi" value="Loga partnera" data-track><span class="opt-text">Loga poznatih klijenata ili partnera</span></label>
-        <label class="opt"><input type="checkbox" name="dokazi" value="Sertifikati/nagrade" data-track><span class="opt-text">Sertifikati, nagrade, medijske objave</span></label>
-      </div>
-      <div class="q" style="margin-top:12px;"><label class="qlabel">Ako imate materijal (tekst recenzija, brojke), unesite ovde</label><textarea name="dokazi_detalji" data-track></textarea></div>
-    </section>
-
-    <section class="card">
-      <div class="badge">6. Poziv na akciju (CTA)</div>
-      <div class="q"><label class="qlabel">Šta želite da posetilac uradi kad dođe na stranicu?</label><textarea name="cta_akcija" data-track></textarea></div>
-      <div class="q"><label class="qlabel">Tekst dugmeta (ili koristite predlog iz sekcije 2)</label><input type="text" name="cta_tekst" data-track></div>
-      <div class="q">
-        <label class="qlabel">Kuda vodi CTA?</label>
-        <div class="options">
-          <label class="opt"><input type="radio" name="cta_vodi" value="Forma na samoj stranici" data-track><span class="opt-text">Forma na samoj stranici</span></label>
-          <label class="opt"><input type="radio" name="cta_vodi" value="Calendly / zakazivanje termina" data-track><span class="opt-text">Calendly / zakazivanje termina</span></label>
-          <label class="opt"><input type="radio" name="cta_vodi" value="WhatsApp / Viber poruka" data-track><span class="opt-text">WhatsApp / Viber poruka</span></label>
-          <label class="opt"><input type="radio" name="cta_vodi" value="Poziv telefonom" data-track><span class="opt-text">Poziv telefonom</span></label>
-          <label class="opt"><input type="radio" name="cta_vodi" value="Drugi link" data-track><span class="opt-text">Drugi link (spoljna stranica, drugi proizvod, dokument...)</span></label>
-        </div>
-        <input type="text" class="other-input" name="cta_vodi_link" placeholder="Upišite adresu linka (npr. https://...)" data-track>
-      </div>
-    </section>
-
-    <section class="card">
-      <div class="badge">7. Forma za kontakt</div>
-      <div class="q">
-        <label class="qlabel">Koja polja forma treba da sadrži?</label>
-        <div class="options">
-          <label class="opt"><input type="checkbox" name="forma_polja" value="Ime i prezime" data-track checked><span class="opt-text">Ime i prezime</span></label>
-          <label class="opt"><input type="checkbox" name="forma_polja" value="Mejl adresa" data-track checked><span class="opt-text">Mejl adresa</span></label>
-          <label class="opt"><input type="checkbox" name="forma_polja" value="Telefon" data-track checked><span class="opt-text">Telefon</span></label>
-          <label class="opt"><input type="checkbox" name="forma_polja" value="Naziv firme" data-track><span class="opt-text">Naziv firme</span></label>
-          <label class="opt"><input type="checkbox" name="forma_polja" value="Poruka/opis potrebe" data-track><span class="opt-text">Poruka / opis potrebe</span></label>
-          <label class="opt"><input type="checkbox" name="forma_polja" value="Budžet" data-track><span class="opt-text">Budžet</span></label>
-        </div>
-      </div>
-      <div class="q"><label class="qlabel">Na koji mejl stižu upiti sa forme? <span class="required">*</span></label><input type="email" name="mejl_prijema" data-track></div>
-    </section>
-
-    <section class="card">
-      <div class="badge">8. Vizuelni identitet</div>
-      <div class="q">
-        <label class="qlabel">Imate li već logo, boje i font?</label>
-        <div class="options">
-          <label class="opt"><input type="radio" name="brend_materijal" value="Da, poslaću brend materijale" data-track><span class="opt-text">Da — poslaću brend materijale (logo, boje, fontove)</span></label>
-          <label class="opt"><input type="radio" name="brend_materijal" value="Ne, prepuštam predlog agenciji" data-track><span class="opt-text">Ne — prepuštam predlog agenciji</span></label>
-        </div>
-      </div>
-      <div class="q">
-        <label class="qlabel">Imate li fotografije/video koje želite da koristimo?</label>
-        <div class="options">
-          <label class="opt"><input type="radio" name="foto_materijal" value="Da, poslaću fajlove" data-track><span class="opt-text">Da — poslaću fajlove</span></label>
-          <label class="opt"><input type="radio" name="foto_materijal" value="Ne, koristićemo stock/AI vizuale" data-track><span class="opt-text">Ne — koristićemo stock/AI generisane vizuale</span></label>
-        </div>
-      </div>
-      <div class="q">
-        <label class="qlabel">Ton komunikacije stranice</label>
-        <div class="options">
-          <label class="opt"><input type="radio" name="ton" value="Profesionalan/formalan" data-track><span class="opt-text">Profesionalan / formalan</span></label>
-          <label class="opt"><input type="radio" name="ton" value="Prijateljski/opušten" data-track><span class="opt-text">Prijateljski / opušten</span></label>
-          <label class="opt"><input type="radio" name="ton" value="Energičan/prodajni" data-track><span class="opt-text">Energičan / prodajni</span></label>
-          <label class="opt"><input type="radio" name="ton" value="Luksuzan/premium" data-track><span class="opt-text">Luksuzan / premium</span></label>
-        </div>
-      </div>
-    </section>
-
-    <section class="card">
-      <div class="badge">9. Praćenje i tehnički detalji</div>
-      <div class="q">
-        <label class="qlabel">Imate li nalog za:</label>
-        <div class="options">
-          <label class="opt"><input type="checkbox" name="tracking" value="Google Analytics" data-track><span class="opt-text">Google Analytics</span></label>
-          <label class="opt"><input type="checkbox" name="tracking" value="Meta Pixel" data-track><span class="opt-text">Meta (Facebook/Instagram) Pixel</span></label>
-          <label class="opt"><input type="checkbox" name="tracking" value="Google Tag Manager" data-track><span class="opt-text">Google Tag Manager</span></label>
-          <label class="opt"><input type="checkbox" name="tracking" value="Ništa, potrebna pomoć" data-track><span class="opt-text">Ništa od navedenog — potrebna pomoć</span></label>
-        </div>
-      </div>
-      <div class="q"><label class="qlabel">Da li već imate domen (npr. vasfirma.rs)?</label><input type="text" name="domen" data-track></div>
-    </section>
-
-    <section class="card">
-      <div class="badge">10. Rok</div>
-      <div class="q"><label class="qlabel">Do kada vam je stranica potrebna?</label><input type="text" name="rok" data-track></div>
-      <div class="q">
-        <label class="qlabel">Planirate li plaćene oglase uz ovu stranicu?</label>
-        <div class="options">
-          <label class="opt"><input type="radio" name="oglasi" value="Da" data-track><span class="opt-text">Da</span></label>
-          <label class="opt"><input type="radio" name="oglasi" value="Ne" data-track><span class="opt-text">Ne</span></label>
-          <label class="opt"><input type="radio" name="oglasi" value="Još razmišljam" data-track><span class="opt-text">Još razmišljam</span></label>
-        </div>
-      </div>
-    </section>
-
-    <div class="footer-note">Polja sa <span class="required">*</span> su najbitnija za početak rada — ostalo popunite koliko možete, može se dopuniti naknadno.</div>
-    <button type="submit" class="submit-btn">Generiši rezime za slanje</button>
-  </form>
-
-  <div class="result-wrap" id="resultWrap">
-    <div class="result-card">
-      <h2>Rezime spreman ✓</h2>
-      <p class="send-status" id="sendStatus"></p>
-      <p class="result-hint">Kopija rezimea je i ispod, za svaki slučaj — možete je i sami poslati ili nalepiti u chat.</p>
-      <textarea id="resultText" readonly></textarea>
-      <button type="button" class="copy-btn" id="copyBtn">📋 Kopiraj rezime</button>
-      <span class="copy-confirm" id="copyConfirm">Kopirano!</span>
+</nav>
+<section class="hero">
+  <div class="container">
+    <div class="hero-badge">⚡ Isporuka za 24 sata · Moderna · Konvertuje</div>
+    <h1>Tvoja landing stranica<br><span class="accent">za 24h — samo 6.000 din</span></h1>
+    <p class="hero-sub">Brza, moderna i funkcionalna landing stranica po ceni manjoj od jednog večernjeg izlaska. Bez rizika — plati samo 500 din i pogledaj šta dobijaš pre nego što se opredeliš.</p>
+    <div class="hero-cta-group">
+      <a href="https://draganapivljakovic-ship-it.github.io/landing-stranica-24h/" class="btn-primary" target="_blank" rel="noopener">⚡ Pokreni projekat — 500 din</a>
+      <a href="#kako-funkcionise" class="btn-secondary">Kako funkcioniše →</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><span class="num">24h</span><span class="lbl">Rok izrade</span></div>
+      <div class="hero-stat"><span class="num">6.000</span><span class="lbl">Dinara ukupno</span></div>
+      <div class="hero-stat"><span class="num">1</span><span class="lbl">Besplatna revizija</span></div>
+      <div class="hero-stat"><span class="num">100%</span><span class="lbl">Mobilno responzivna</span></div>
     </div>
   </div>
-</div>
-
+</section>
+<section class="how-bg" id="kako-funkcionise">
+  <div class="container">
+    <div class="text-center">
+      <p class="section-label">Proces</p>
+      <h2 class="section-title">Kako funkcioniše?</h2>
+      <p class="section-sub">Tri koraka od tvog klika do gotove landing stranice.</p>
+    </div>
+    <div class="steps">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h3>Uplati depozit i popuni upitnik</h3>
+        <p>Uplati 500 dinara na račun kao rezervaciju termina. Zatim popuni kratki upitnik o svom biznisu — to je sve što nam treba da počnemo.</p>
+        <div class="step-amount">💳 500 dinara · odmah</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h3>Pravimo tvoju stranicu</h3>
+        <p>U roku od 24 sata dobijaš modernu, mobilno responzivnu landing stranicu prilagođenu tvom biznisu — izgled, tekst i sve što treba da konvertuje posetioce u klijente.</p>
+        <div class="step-amount">⏱ Isporuka u roku od 24h</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h3>Sviđa ti se? Doplati ostatak</h3>
+        <p>Pogledaš, komentarišeš, unesemo jednu reviziju po tvojim napomenama. Ako si zadovoljna/zadovoljan — doplatiš još 5.500 din i stranica je tvoja, deployovana i gotova.</p>
+        <div class="step-amount">✅ 5.500 dinara · samo ako si zadovoljna/zadovoljan</div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="ponuda">
+  <div class="container">
+    <div class="offer-grid">
+      <div>
+        <p class="section-label">Šta dobijaš</p>
+        <h2 class="section-title">Sve što treba<br>da stranica radi za tebe</h2>
+        <ul class="offer-list" style="margin-top: 28px;">
+          <li><span class="icon">⚡</span><span><strong>Isporuka za 24 sata</strong> — od uplate depozita do gotove stranice. Bez čekanja nedeljama.</span></li>
+          <li><span class="icon">📱</span><span><strong>Mobilno responzivan dizajn</strong> — savršeno izgleda na telefonu, tabletu i računaru.</span></li>
+          <li><span class="icon">🎯</span><span><strong>Fokus na konverziju</strong> — stranica je projektovana da posetilac postane klijent.</span></li>
+          <li><span class="icon">✏️</span><span><strong>1 besplatna revizija</strong> — imaš pravo na jednu rundu izmena pre finalne isporuke.</span></li>
+          <li><span class="icon">💬</span><span><strong>Forma za kontakt</strong> — upiti stižu direktno na tvoj mejl, odmah i bez komplikacija.</span></li>
+          <li><span class="icon">⚙️</span><span><strong>Deployovanje i postavljanje</strong> — stranica je živa i dostupna čim potvrdiš finalnu verziju.</span></li>
+        </ul>
+      </div>
+      <div>
+        <div class="price-card">
+          <div class="tag">💳 Cenovnik</div>
+          <div class="price-big">6.000 din</div>
+          <div class="price-sub">Ukupna cena · plaćaš u 2 koraka</div>
+          <div class="price-breakdown">
+            <div class="price-row"><span class="label">Depozit (odmah)</span><span class="amount highlight">500 din</span></div>
+            <div class="price-row"><span class="label">Ostatak (nakon pregleda)</span><span class="amount highlight">5.500 din</span></div>
+            <div class="price-row"><span class="label">Rok isporuke</span><span class="amount">24 sata</span></div>
+            <div class="price-row"><span class="label">Revizije</span><span class="amount">1 besplatna</span></div>
+          </div>
+          <div class="guarantee">🛡 Ne sviđa ti se rezultat? Depozit od 500 din ostaje kod nas kao naknada za vreme i rad — ostatak ne plaćaš.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="examples-bg" id="primeri">
+  <div class="container">
+    <div class="text-center">
+      <p class="section-label">Portfolio</p>
+      <h2 class="section-title">Primeri landing stranica</h2>
+      <p class="section-sub">Svaka stranica je prilagođena industriji, ciljnoj publici i cilju kampanje.</p>
+    </div>
+    <div class="examples-grid">
+      <div class="example-card">
+        <div class="example-browser"><div class="browser-dots"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div></div>
+        <img src="/Skolskipribor.png" alt="Školski pribor landing stranica" class="example-img">
+        <div class="example-info"><span class="example-type">E-commerce</span><h3>Školski pribor — online prodavnica</h3></div>
+      </div>
+      <div class="example-card">
+        <div class="example-browser"><div class="browser-dots"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div></div>
+        <img src="/Klima.png" alt="Klima uređaji landing stranica" class="example-img">
+        <div class="example-info"><span class="example-type">Servis / Ugradnja</span><h3>Klima uređaji — lead generacija</h3></div>
+      </div>
+      <div class="example-card">
+        <div class="example-browser"><div class="browser-dots"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div></div>
+        <img src="/Aplikacija.png" alt="SaaS aplikacija landing stranica" class="example-img">
+        <div class="example-info"><span class="example-type">SaaS / Aplikacija</span><h3>Produktivnost aplikacija — registracija</h3></div>
+      </div>
+      <div class="example-card">
+        <div class="example-browser"><div class="browser-dots"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div></div>
+        <img src="/Suplement.png" alt="Suplementi landing stranica" class="example-img">
+        <div class="example-info"><span class="example-type">E-commerce / Zdravlje</span><h3>Suplementi — direktna prodaja</h3></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="payment-bg" id="uplata">
+  <div class="container">
+    <div class="text-center">
+      <p class="section-label">1. korak</p>
+      <h2 class="section-title">Podaci za uplatu depozita</h2>
+      <p class="section-sub">Uplati 500 dinara na račun ispod, pa popuni upitnik. Čim primimo uplatu, startujemo sa izradom.</p>
+    </div>
+    <div class="payment-box">
+      <h3>🏦 Podaci za prenos</h3>
+      <div class="payment-fields">
+        <div class="payment-row"><span class="key">Naziv primaoca</span><span class="val">Digitalna radionica</span></div>
+        <div class="payment-row">
+          <span class="key">Broj računa</span>
+          <span class="val" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end;">
+            265110031010883837
+            <button class="copy-btn" onclick="copyText(this, '265110031010883837')">Kopiraj</button>
+          </span>
+        </div>
+        <div class="payment-row"><span class="key">Adresa</span><span class="val">Steve Žigona 39, Beograd</span></div>
+        <div class="payment-row"><span class="key">Iznos</span><span class="val" style="color:var(--primary-dark)">500,00 RSD</span></div>
+        <div class="payment-row"><span class="key">Svrha uplate</span><span class="val">Idejni projekat — landing stranica</span></div>
+      </div>
+      <div class="payment-note">📩 <strong>Kada uplatiš</strong> — popuni upitnik klikom na dugme ispod. Navedi ime i kontakt kako bismo mogli da povežemo uplatu sa tvojim projektom.</div>
+    </div>
+    <div style="text-align:center; margin-top:36px;">
+      <a href="https://draganapivljakovic-ship-it.github.io/landing-stranica-24h/" class="btn-primary" target="_blank" rel="noopener" style="display:inline-flex;">📋 Popuni upitnik i pokreni projekat</a>
+    </div>
+  </div>
+</section>
+<section id="recenzije">
+  <div class="container">
+    <div class="text-center">
+      <p class="section-label">Iskustva klijenata</p>
+      <h2 class="section-title">Šta kažu oni koji su već sarađivali</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>"Nisam verovala da je moguće dobiti ovako dobru stranicu za 24 sata. Iznenadila me je kvalitetom i brzinom. Odmah sam je aktivirala za kampanju."</p>
+        <div class="testimonial-author"><div class="author-avatar">M</div><div><div class="author-name">Milica T.</div><div class="author-biz">Kozmetički salon, Beograd</div></div></div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>"Odličan odnos cene i kvaliteta. Za 6.000 dinara dobio sam stranicu koja mi je donela prve upite već prvog dana od lansiranja oglasa."</p>
+        <div class="testimonial-author"><div class="author-avatar">N</div><div><div class="author-name">Nikola S.</div><div class="author-biz">Elektroinstalacije, Novi Sad</div></div></div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>"Bila sam skeptična, ali ovaj model 500 pa vidimo je bio presudio. Rezultat je bio toliko dobar da sam doplatu uplatila istog dana."</p>
+        <div class="testimonial-author"><div class="author-avatar">A</div><div><div class="author-name">Ana R.</div><div class="author-biz">Instrukcije i tutorstvo</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="form-section" id="kontakt">
+  <div class="container">
+    <div class="text-center">
+      <p class="section-label">Pitanja?</p>
+      <h2 class="section-title">Javi se pre nego što kreneš</h2>
+      <p class="section-sub">Imaš pitanje pre nego što uplatiš? Ostavi kontakt i javljamo se u kratkom roku.</p>
+    </div>
+    <div class="form-wrapper">
+      <form id="kontakt-forma">
+        <input type="hidden" name="access_key" value="7fb73288-70d2-4f86-aea4-52f2188ad34a">
+        <input type="hidden" name="subject" value="Upit sa landing stranice — Digitalna Radionica">
+        <input type="hidden" name="from_name" value="Landing Stranica 24h">
+        <p class="honeypot"><label>Ne popunjavaj: <input name="botcheck"></label></p>
+        <div class="form-group">
+          <label for="name">Ime i prezime *</label>
+          <input type="text" id="name" name="name" placeholder="Marko Marković" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Mejl adresa *</label>
+          <input type="email" id="email" name="email" placeholder="marko@primer.rs" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Telefon</label>
+          <input type="tel" id="phone" name="phone" placeholder="06X XXX XXXX">
+        </div>
+        <button type="submit" class="form-submit">Pošalji upit →</button>
+        <p class="form-note" id="form-status">📧 Upiti stižu direktno na office@digitalnaradionica.rs</p>
+      </form>
+    </div>
+  </div>
+</section>
+<section class="final-cta">
+  <div class="container" style="position:relative;z-index:1;">
+    <h2 class="section-title" style="margin-bottom:18px;">Spreman/a da počneš?</h2>
+    <p>Uplati 500 dinara, popuni upitnik — za 24 sata imaš gotovu landing stranicu.</p>
+    <div class="final-cta-btns">
+      <a href="#uplata" class="btn-white">🏦 Podaci za uplatu</a>
+      <a href="https://draganapivljakovic-ship-it.github.io/landing-stranica-24h/" class="btn-primary" target="_blank" rel="noopener">📋 Popuni upitnik ⚡</a>
+    </div>
+    <p style="margin-top:24px;font-size:13px;color:rgba(255,255,255,0.45);">✓ Isporuka za 24h · ✓ 1 besplatna revizija · ✓ Moderne tehnologije · ✓ Cena fiksna bez iznenađenja</p>
+  </div>
+</section>
+<footer>
+  <a href="https://www.digitalnaradionica.rs" class="footer-logo" target="_blank" rel="noopener">
+    <img src="https://www.digitalnaradionica.rs/wp-content/uploads/2026/05/Logo-2-1.png.webp" alt="Logo" onerror="this.style.display='none'">
+    Digitalna radionica
+  </a>
+  <p>Studio za digitalne sisteme · Web sajtovi, SEO i AI automatizacija</p>
+  <hr class="footer-divider">
+  <p>📧 <a href="mailto:office@digitalnaradionica.rs">office@digitalnaradionica.rs</a></p>
+  <p>📞 <a href="tel:+38169651298">+381 69 651 298</a></p>
+  <p style="margin-top:6px;">Steve Žigona 39, Beograd</p>
+  <hr class="footer-divider">
+  <p class="footer-copy">© 2026 Digitalna radionica · <a href="https://www.digitalnaradionica.rs">www.digitalnaradionica.rs</a></p>
+</footer>
+<a href="https://wa.me/38169651298" class="whatsapp-btn" target="_blank" rel="noopener" aria-label="WhatsApp kontakt">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
 <script>
-const form = document.getElementById('upitnik');
-const progressFill = document.getElementById('progressFill');
-const progressLabel = document.getElementById('progressLabel');
-const trackFields = Array.from(form.querySelectorAll('[data-track]'));
-
-function autoGrow(el){el.style.height='auto';el.style.height=(el.scrollHeight+2)+'px';}
-form.querySelectorAll('textarea').forEach(t=>{autoGrow(t);t.addEventListener('input',()=>autoGrow(t));});
-
-const allNames=[...new Set(trackFields.map(f=>f.name))];
-function updateProgress(){
-  let filled=0;
-  allNames.forEach(name=>{
-    const fields=form.querySelectorAll('[name="'+name+'"]');
-    let has=false;
-    fields.forEach(f=>{if(f.type==='checkbox'||f.type==='radio'){if(f.checked)has=true;}else{if(f.value.trim())has=true;}});
-    if(has)filled++;
+  function copyText(btn, text) {
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = '✓ Kopirano!'; btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'Kopiraj'; btn.classList.remove('copied'); }, 2000);
+    }).catch(() => {
+      const el = document.createElement('textarea'); el.value = text;
+      document.body.appendChild(el); el.select(); document.execCommand('copy'); document.body.removeChild(el);
+      btn.textContent = '✓ Kopirano!'; btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'Kopiraj'; btn.classList.remove('copied'); }, 2000);
+    });
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', function(e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
   });
-  const pct=Math.round(filled/allNames.length*100);
-  progressFill.style.width=pct+'%';
-  progressLabel.textContent=pct+'% popunjeno';
-}
-
-const radioLast={};
-form.addEventListener('mousedown',e=>{
-  if(e.target.type==='radio'){
-    const k=e.target.name;
-    radioLast[k]=(radioLast[k]===e.target.value)?null:e.target.value;
-    e.target._uncheck=radioLast[k]===null;
-  }
-});
-form.addEventListener('click',e=>{
-  if(e.target.type==='radio'&&e.target._uncheck){
-    e.target.checked=false;e.target._uncheck=false;
-    form.querySelectorAll('input[name="'+e.target.name+'"]').forEach(g=>g.closest('.opt').classList.remove('checked'));
-    updateProgress();e.preventDefault();
-  }
-});
-form.addEventListener('input',updateProgress);
-form.addEventListener('change',e=>{
-  updateProgress();
-  if(e.target.closest('.opt')){
-    const opt=e.target.closest('.opt');
-    if(e.target.type==='radio')form.querySelectorAll('input[name="'+e.target.name+'"]').forEach(g=>g.closest('.opt').classList.remove('checked'));
-    opt.classList.toggle('checked',e.target.checked);
-  }
-});
-
-function getVal(n){const el=form.querySelector('[name="'+n+'"]');return el?el.value.trim():'';}
-function getChecked(n){return Array.from(form.querySelectorAll('[name="'+n+'"]:checked')).map(el=>el.value);}
-function line(l,v){return v&&v.length?(l+': '+v+'\n'):(l+': —\n');}
-
-form.addEventListener('submit',function(e){
-  e.preventDefault();
-  let cilj=getVal('cilj');
-  if(cilj==='Drugo')cilj='Drugo — '+getVal('cilj_drugo');
-  let ctaVodi=getVal('cta_vodi');
-  if(ctaVodi==='Drugi link')ctaVodi='Drugi link — '+getVal('cta_vodi_link');
-
-  let out='=== UPITNIK ZA LANDING STRANICU ===\n';
-  out+='Popunjeno: '+new Date().toLocaleDateString('sr-RS')+'\n\n';
-  out+='--- 1. OSNOVNI PODACI ---\n';
-  out+=line('Naziv firme',getVal('naziv_firme'));
-  out+=line('Delatnost',getVal('delatnost'));
-  out+=line('Web sajt',getVal('web_sajt'));
-  out+=line('Telefon',getVal('telefon'));
-  out+=line('Kontakt',getVal('kontakt'));
-  out+='\n--- 2. CILJ STRANICE ---\n';
-  out+=line('Glavni cilj',cilj);
-  out+=line('Izvor posetilaca',getChecked('izvor').join(', '));
-  out+='\n--- 3. CILJNA PUBLIKA ---\n';
-  out+=line('Publika',getVal('publika'));
-  out+=line('Problem koji rešavate',getVal('problem'));
-  out+='\n--- 4. PONUDA ---\n';
-  out+=line('Šta se nudi',getVal('ponuda'));
-  out+=line('Cena/paketi',getVal('cena'));
-  out+=line('Rok ponude',getVal('rok_ponude'));
-  out+=line('Prednosti',getVal('prednosti'));
-  out+='\n--- 4.5 SADRŽAJ STRANICE ---\n';
-  out+=line('Šta treba da se nađe na sajtu',getVal('sadrzaj_sajta'));
-  out+='\n--- 5. POVERENJE I DOKAZI ---\n';
-  out+=line('Dostupno',getChecked('dokazi').join(', '));
-  out+=line('Detalji',getVal('dokazi_detalji'));
-  out+='\n--- 6. CTA ---\n';
-  out+=line('Željena akcija posetioca',getVal('cta_akcija'));
-  out+=line('Tekst dugmeta',getVal('cta_tekst'));
-  out+=line('CTA vodi ka',ctaVodi);
-  out+='\n--- 7. FORMA ---\n';
-  out+=line('Polja forme',getChecked('forma_polja').join(', '));
-  out+=line('Mejl za prijem upita',getVal('mejl_prijema'));
-  out+='\n--- 8. VIZUELNI IDENTITET ---\n';
-  out+=line('Brend materijali',getVal('brend_materijal'));
-  out+=line('Foto/video materijal',getVal('foto_materijal'));
-  out+=line('Ton komunikacije',getVal('ton'));
-  out+='\n--- 9. PRAĆENJE ---\n';
-  out+=line('Tracking nalozi',getChecked('tracking').join(', '));
-  out+=line('Domen',getVal('domen'));
-  out+='\n--- 10. ROK ---\n';
-  out+=line('Potreban do',getVal('rok'));
-  out+=line('Plaćeni oglasi planirani',getVal('oglasi'));
-
-  document.getElementById('resultText').value=out;
-  autoGrow(document.getElementById('resultText'));
-  document.getElementById('rezimeField').value=out;
-
-  const submitBtn=form.querySelector('.submit-btn');
-  submitBtn.textContent='Šaljem...';
-  submitBtn.disabled=true;
-
-  const encoded=new URLSearchParams();
-  new FormData(form).forEach((v,k)=>encoded.append(k,v));
-
-  fetch('https://api.web3forms.com/submit',{
-    method:'POST',
-    headers:{'Content-Type':'application/x-www-form-urlencoded'},
-    body:encoded.toString()
-  })
-  .then(r=>r.json())
-  .then(data=>{
-    if(data.success){
-      document.getElementById('sendStatus').textContent='✓ Upitnik je uspešno poslat na office@digitalnaradionica.rs';
-      document.getElementById('sendStatus').className='send-status success';
-      submitBtn.textContent='Poslato ✓';
-      // Meta Pixel — Lead event
-      if(typeof fbq!=='undefined'){fbq('track','Lead');}
-    } else {
-      throw new Error('Web3Forms error');
+  // Kontakt forma — Web3Forms
+  document.getElementById('kontakt-forma').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = this.querySelector('.form-submit');
+    const status = document.getElementById('form-status');
+    btn.textContent = 'Šaljem...'; btn.disabled = true;
+    const encoded = new URLSearchParams(new FormData(this));
+    try {
+      const r = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: encoded.toString()
+      });
+      const data = await r.json();
+      if (data.success) {
+        status.textContent = '✓ Poruka je poslata! Javljamo se uskoro.';
+        status.style.color = '#0F766E';
+        btn.textContent = 'Poslato ✓';
+      } else { throw new Error(); }
+    } catch {
+      status.textContent = '⚠ Nije uspelo — pišite direktno na office@digitalnaradionica.rs';
+      btn.textContent = 'Pošalji upit →'; btn.disabled = false;
     }
-  })
-  .catch(()=>{
-    document.getElementById('sendStatus').textContent='⚠ Slanje nije uspelo — kopirajte tekst ispod i pošaljite ga ručno na office@digitalnaradionica.rs';
-    document.getElementById('sendStatus').className='send-status error';
-    submitBtn.textContent='Generiši rezime za slanje';
-    submitBtn.disabled=false;
   });
-
-  document.getElementById('resultWrap').classList.add('show');
-  document.getElementById('resultWrap').scrollIntoView({behavior:'smooth'});
-});
-
-document.getElementById('copyBtn').addEventListener('click',function(){
-  const t=document.getElementById('resultText');
-  t.select();document.execCommand('copy');
-  const c=document.getElementById('copyConfirm');
-  c.classList.add('show');setTimeout(()=>c.classList.remove('show'),2000);
-});
 </script>
 </body>
 </html>
