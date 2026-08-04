@@ -420,6 +420,8 @@
         status.textContent = '✓ Poruka je poslata! Javljamo se uskoro.';
         status.style.color = '#0F766E';
         btn.textContent = 'Poslato ✓';
+        // Meta Pixel — Contact event (upit sa landing stranice, pre upitnika)
+        if(typeof fbq!=='undefined'){fbq('track','Contact');}
       } else { throw new Error(); }
     } catch {
       status.textContent = '⚠ Nije uspelo — pišite direktno na office@digitalnaradionica.rs';
