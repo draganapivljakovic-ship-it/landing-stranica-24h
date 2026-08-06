@@ -36,19 +36,32 @@
     }
     html { scroll-behavior: smooth; }
     body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+    /* ---- TOPBAR ---- */
+    .topbar { background: var(--primary-dark); color: rgba(255,255,255,0.9); padding: 8px 24px; font-size: 13px; }
+    .topbar-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: flex-end; gap: 24px; flex-wrap: wrap; }
+    .topbar a { color: rgba(255,255,255,0.9); text-decoration: none; display: flex; align-items: center; gap: 6px; font-weight: 500; transition: color 0.15s; }
+    .topbar a:hover { color: #fff; }
+    .topbar-sep { color: rgba(255,255,255,0.25); }
+    @media (max-width: 480px) { .topbar-inner { justify-content: center; gap: 14px; } .topbar-sep { display: none; } }
+
     nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 24px; }
     .nav-inner { max-width: 1200px; margin: 0 auto; height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
     .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 700; font-size: 17px; color: var(--text); }
     .nav-logo img { height: 36px; width: auto; }
     .nav-cta { background: var(--primary); color: var(--white); border: none; border-radius: 8px; padding: 10px 20px; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; text-decoration: none; transition: background 0.2s, transform 0.15s; white-space: nowrap; }
     .nav-cta:hover { background: var(--primary-dark); transform: translateY(-1px); }
+
+    /* ---- HERO ---- */
     .hero { background: linear-gradient(135deg, #0F2027 0%, #1a3a3a 50%, #0F766E 100%); color: var(--white); padding: 80px 24px 72px; text-align: center; position: relative; overflow: hidden; }
     .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(20,184,166,0.25) 0%, transparent 70%); pointer-events: none; }
     .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(20,184,166,0.15); border: 1px solid rgba(20,184,166,0.4); border-radius: 100px; padding: 6px 16px; font-size: 13px; font-weight: 600; color: #5EEAD4; margin-bottom: 28px; letter-spacing: 0.02em; }
-    .hero h1 { font-size: clamp(32px, 5vw, 58px); font-weight: 800; line-height: 1.13; max-width: 800px; margin: 0 auto 20px; letter-spacing: -0.02em; }
+    .hero h1 { font-size: clamp(32px, 5vw, 58px); font-weight: 800; line-height: 1.13; max-width: 820px; margin: 0 auto 20px; letter-spacing: -0.02em; }
     .hero h1 .accent { color: #5EEAD4; }
-    .hero-sub { font-size: clamp(16px, 2.2vw, 19px); color: rgba(255,255,255,0.75); max-width: 560px; margin: 0 auto 36px; line-height: 1.65; }
-    .hero-cta-group { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 52px; }
+    .hero-sub { font-size: clamp(16px, 2.2vw, 19px); color: rgba(255,255,255,0.85); max-width: 600px; margin: 0 auto 36px; line-height: 1.65; }
+    .hero-sub strong { color: #fff; }
+    .hero-cta-group { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 12px; }
+    .hero-micro { font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 44px; }
     .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--primary); color: var(--white); text-decoration: none; font-weight: 700; font-size: 16px; padding: 16px 32px; border-radius: 10px; transition: background 0.2s, transform 0.15s, box-shadow 0.2s; box-shadow: 0 4px 20px rgba(20,184,166,0.45); }
     .btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(20,184,166,0.5); }
     .btn-secondary { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.1); color: var(--white); text-decoration: none; font-weight: 600; font-size: 15px; padding: 15px 28px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2); transition: background 0.2s; }
@@ -57,6 +70,8 @@
     .hero-stat { text-align: center; }
     .hero-stat .num { font-size: clamp(24px, 4vw, 36px); font-weight: 800; color: #5EEAD4; display: block; line-height: 1; margin-bottom: 4px; }
     .hero-stat .lbl { font-size: 13px; color: rgba(255,255,255,0.6); font-weight: 500; }
+
+    /* ---- GENERAL ---- */
     section { padding: 80px 24px; }
     .container { max-width: 1200px; margin: 0 auto; }
     .section-label { font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--primary-dark); margin-bottom: 12px; }
@@ -64,14 +79,34 @@
     .section-sub { font-size: 17px; color: var(--muted); max-width: 560px; line-height: 1.65; }
     .text-center { text-align: center; }
     .text-center .section-sub { margin: 0 auto; }
+
+    /* ---- ŠTA VAM TREBA ---- */
+    .needed-bg { background: var(--primary-xlight); border-top: 1px solid var(--primary-light); border-bottom: 1px solid var(--primary-light); }
+    .needed-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; margin-top: 48px; }
+    @media (max-width: 768px) { .needed-grid { grid-template-columns: 1fr; gap: 32px; } }
+    .needed-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .needed-list li { display: flex; align-items: center; gap: 14px; font-size: 16px; font-weight: 500; line-height: 1.4; }
+    .needed-check { width: 28px; height: 28px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: white; font-size: 14px; font-weight: 700; }
+    .needed-callout { background: var(--white); border-radius: 16px; padding: 32px; border: 1px solid var(--primary-light); box-shadow: var(--shadow); }
+    .needed-callout p { font-size: 15px; color: var(--muted); line-height: 1.7; margin-bottom: 0; }
+    .needed-callout p + p { margin-top: 12px; }
+    .needed-callout strong { color: var(--text); }
+
+    /* ---- HOW IT WORKS (5 steps) ---- */
     .how-bg { background: var(--bg-soft); }
-    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; margin-top: 56px; }
-    .step-card { background: var(--white); border-radius: var(--radius); padding: 32px 28px; box-shadow: var(--shadow); }
-    .step-num { width: 40px; height: 40px; border-radius: 50%; background: var(--primary-light); color: var(--primary-dark); font-size: 16px; font-weight: 800; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
-    .step-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
-    .step-card p { font-size: 14px; color: var(--muted); line-height: 1.6; }
-    .step-card .step-amount { margin-top: 16px; background: var(--primary-xlight); border-radius: 8px; padding: 10px 14px; font-size: 14px; font-weight: 600; color: var(--primary-dark); }
-    .offer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; margin-top: 56px; }
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 56px; }
+    .step-card { background: var(--white); border-radius: var(--radius); padding: 28px 24px; box-shadow: var(--shadow); position: relative; }
+    .step-num { width: 40px; height: 40px; border-radius: 50%; background: var(--primary-light); color: var(--primary-dark); font-size: 16px; font-weight: 800; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+    .step-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; line-height: 1.3; }
+    .step-card p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+    .step-card .step-amount { margin-top: 14px; background: var(--primary-xlight); border-radius: 8px; padding: 8px 12px; font-size: 13px; font-weight: 600; color: var(--primary-dark); }
+    .step-connector { display: none; }
+    @media (min-width: 900px) {
+      .steps { position: relative; }
+    }
+
+    /* ---- OFFER ---- */
+    .offer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; margin-top: 56px; }
     @media (max-width: 768px) { .offer-grid { grid-template-columns: 1fr; } }
     .offer-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
     .offer-list li { display: flex; align-items: flex-start; gap: 14px; font-size: 16px; line-height: 1.55; }
@@ -86,7 +121,16 @@
     .price-row .label { color: rgba(255,255,255,0.75); }
     .price-row .amount { font-weight: 700; }
     .price-row .amount.highlight { color: #5EEAD4; }
-    .guarantee { background: rgba(255,255,255,0.08); border-radius: 10px; padding: 14px 18px; font-size: 13px; color: rgba(255,255,255,0.75); line-height: 1.5; }
+    .price-guarantee { background: rgba(255,255,255,0.08); border-radius: 10px; padding: 14px 18px; font-size: 13px; color: rgba(255,255,255,0.8); line-height: 1.5; }
+
+    /* ---- BEZ RIZIKA BLOCK ---- */
+    .guarantee-block { background: #FFFBEB; border: 2px solid #FCD34D; border-radius: 14px; padding: 28px 28px; margin-top: 32px; display: flex; align-items: flex-start; gap: 16px; }
+    .guarantee-block .gb-icon { font-size: 32px; flex-shrink: 0; line-height: 1; margin-top: 2px; }
+    .guarantee-block h3 { font-size: 18px; font-weight: 800; margin-bottom: 8px; color: #92400E; }
+    .guarantee-block p { font-size: 15px; color: #78350F; line-height: 1.65; }
+    @media (max-width: 540px) { .guarantee-block { flex-direction: column; gap: 10px; } }
+
+    /* ---- PAYMENT ---- */
     .payment-bg { background: var(--bg-soft); }
     .payment-box { background: var(--white); border-radius: 16px; border: 2px solid var(--primary-light); padding: 40px; max-width: 680px; margin: 48px auto 0; box-shadow: var(--shadow); }
     .payment-box h3 { font-size: 20px; font-weight: 700; margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
@@ -98,6 +142,8 @@
     .copy-btn { background: none; border: 1px solid var(--primary); color: var(--primary-dark); border-radius: 6px; padding: 3px 10px; font-size: 12px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; transition: background 0.15s; white-space: nowrap; }
     .copy-btn:hover { background: var(--primary-light); }
     .copy-btn.copied { color: #059669; border-color: #059669; }
+
+    /* ---- EXAMPLES ---- */
     .examples-bg { background: var(--bg-soft); }
     .examples-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; margin-top: 52px; }
     .example-card { background: var(--white); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
@@ -107,9 +153,13 @@
     .browser-dots span { width: 10px; height: 10px; border-radius: 50%; }
     .browser-dots .d1 { background: #FF5F57; } .browser-dots .d2 { background: #FFBD2E; } .browser-dots .d3 { background: #28C840; }
     .example-img { width: 100%; height: 200px; object-fit: cover; object-position: top; display: block; }
+    .example-img-placeholder { width: 100%; height: 200px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; font-weight: 600; font-size: 13px; color: rgba(255,255,255,0.85); letter-spacing: 0.02em; }
+    .example-img-placeholder svg { opacity: 0.6; }
     .example-info { padding: 16px 18px; }
     .example-type { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary-dark); background: var(--primary-light); border-radius: 4px; padding: 2px 8px; display: inline-block; margin-bottom: 8px; }
     .example-info h3 { font-size: 15px; font-weight: 700; color: var(--text); }
+
+    /* ---- TESTIMONIALS ---- */
     .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 52px; }
     .testimonial-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow); }
     .stars { color: #F59E0B; font-size: 16px; margin-bottom: 14px; letter-spacing: 2px; }
@@ -118,6 +168,8 @@
     .author-avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; font-weight: 700; font-size: 15px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .author-name { font-size: 14px; font-weight: 700; }
     .author-biz { font-size: 12px; color: var(--muted); }
+
+    /* ---- CONTACT FORM ---- */
     .form-section { background: var(--bg-soft); }
     .form-wrapper { max-width: 560px; margin: 48px auto 0; background: var(--white); border-radius: 20px; padding: 48px 40px; box-shadow: var(--shadow-lg); }
     @media (max-width: 540px) { .form-wrapper { padding: 32px 24px; } }
@@ -131,13 +183,18 @@
     .form-submit:hover { background: var(--primary-dark); transform: translateY(-1px); }
     .form-note { font-size: 13px; color: var(--muted); text-align: center; margin-top: 14px; line-height: 1.5; }
     .honeypot { display: none !important; }
+
+    /* ---- FINAL CTA ---- */
     .final-cta { background: linear-gradient(135deg, #0F2027 0%, #1a3a3a 50%, #0F766E 100%); color: var(--white); text-align: center; padding: 88px 24px; position: relative; overflow: hidden; }
     .final-cta::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 80% at 50% 100%, rgba(20,184,166,0.2) 0%, transparent 70%); }
     .final-cta .section-title { color: var(--white); }
     .final-cta p { font-size: 18px; color: rgba(255,255,255,0.7); max-width: 520px; margin: 0 auto 40px; line-height: 1.6; }
     .final-cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .final-cta-micro { font-size: 13px; color: rgba(255,255,255,0.4); margin-top: 16px; }
     .btn-white { display: inline-flex; align-items: center; gap: 8px; background: var(--white); color: var(--primary-dark); text-decoration: none; font-weight: 700; font-size: 16px; padding: 16px 32px; border-radius: 10px; transition: transform 0.15s, box-shadow 0.2s; box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
     .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.25); }
+
+    /* ---- FOOTER ---- */
     footer { background: #0d1f1e; color: rgba(255,255,255,0.7); padding: 48px 24px; text-align: center; }
     .footer-logo { display: inline-flex; align-items: center; gap: 10px; font-size: 18px; font-weight: 700; color: var(--white); text-decoration: none; margin-bottom: 20px; }
     .footer-logo img { height: 32px; }
@@ -146,68 +203,170 @@
     footer a:hover { text-decoration: underline; }
     .footer-divider { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 28px auto; max-width: 400px; }
     .footer-copy { font-size: 12px; color: rgba(255,255,255,0.35); }
+
+    /* ---- WHATSAPP ---- */
     .whatsapp-btn { position: fixed; bottom: 28px; right: 28px; z-index: 999; width: 58px; height: 58px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(37,211,102,0.45); text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; }
     .whatsapp-btn:hover { transform: scale(1.1); box-shadow: 0 8px 28px rgba(37,211,102,0.55); }
     .whatsapp-btn svg { width: 30px; height: 30px; fill: white; }
-    @media (max-width: 640px) { section { padding: 60px 20px; } .hero { padding: 60px 20px 56px; } .payment-box { padding: 28px 20px; } .steps { grid-template-columns: 1fr; } }
+
+    /* ---- STICKY MOBILE CTA ---- */
+    .sticky-mobile-cta { display: none; }
+    @media (max-width: 640px) {
+      .sticky-mobile-cta {
+        display: block;
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
+        z-index: 997;
+        background: var(--white);
+        border-top: 1px solid var(--border);
+        padding: 12px 16px 16px;
+        box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+      }
+      .sticky-mobile-cta a {
+        display: block;
+        background: var(--primary);
+        color: var(--white);
+        text-align: center;
+        padding: 15px 20px;
+        border-radius: 10px;
+        font-size: 15px;
+        font-weight: 700;
+        text-decoration: none;
+        box-shadow: 0 4px 16px rgba(20,184,166,0.4);
+      }
+      .sticky-mobile-cta .scta-micro {
+        font-size: 11px;
+        color: var(--muted);
+        text-align: center;
+        margin-top: 6px;
+      }
+      .whatsapp-btn { bottom: 100px; }
+      section { padding: 60px 20px; }
+      .hero { padding: 60px 20px 56px; }
+      .payment-box { padding: 28px 20px; }
+      .steps { grid-template-columns: 1fr; }
+      body { padding-bottom: 80px; }
+    }
   </style>
 </head>
 <body>
+
+<!-- ========== TOPBAR ========== -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <a href="tel:+38169651298">📞 069 651 298</a>
+    <span class="topbar-sep">|</span>
+    <a href="mailto:office@digitalnaradionica.rs">✉ office@digitalnaradionica.rs</a>
+    <span class="topbar-sep">|</span>
+    <a href="https://wa.me/38169651298" target="_blank" rel="noopener">💬 WhatsApp</a>
+  </div>
+</div>
+
+<!-- ========== NAV ========== -->
 <nav>
   <div class="nav-inner">
     <a href="https://www.digitalnaradionica.rs" class="nav-logo">
       <img src="https://www.digitalnaradionica.rs/wp-content/uploads/2026/05/Logo-2-1.png.webp" alt="Digitalna radionica logo" onerror="this.style.display='none'">
       <span>Digitalna radionica</span>
     </a>
-    <a href="https://draganapivljakovic-ship-it.github.io/upitnik/" class="nav-cta" target="_blank" rel="noopener">Pokreni projekat ⚡</a>
+    <a href="https://draganapivljakovic-ship-it.github.io/upitnik/" class="nav-cta" target="_blank" rel="noopener">Započnite izradu ⚡</a>
   </div>
 </nav>
+
+<!-- ========== HERO ========== -->
 <section class="hero">
   <div class="container">
-    <div class="hero-badge">⚡ Isporuka za 24 sata · Moderna · Konvertuje</div>
-    <h1>Tvoja landing stranica<br><span class="accent">za 24h — samo 6.000 din</span></h1>
-    <p class="hero-sub">Brza, moderna i funkcionalna landing stranica po ceni manjoj od jednog večernjeg izlaska. Bez rizika — plati samo 500 din i pogledaj šta dobijaš pre nego što se opredeliš.</p>
+    <div class="hero-badge">⚡ Isporuka za 24 sata · Moderna · Mobilno responzivna</div>
+    <h1>Moderna landing stranica<br><span class="accent">gotova za 24 sata</span></h1>
+    <p class="hero-sub">
+      Brza, profesionalna landing stranica prilagođena tvom biznisu i Meta oglasima. Bez čekanja nedeljama — za jedan dan imaš stranicu koja konvertuje posetioce u klijente.
+    </p>
     <div class="hero-cta-group">
-      <a href="https://draganapivljakovic-ship-it.github.io/upitnik/" class="btn-primary" target="_blank" rel="noopener">⚡ Pokreni projekat — 500 din</a>
-      <a href="#kako-funkcionise" class="btn-secondary">Kako funkcioniše →</a>
+      <a href="#kako-funkcionise" class="btn-primary">Pogledaj kako funkcioniše →</a>
+      <a href="#primeri" class="btn-secondary">Pogledaj primere</a>
     </div>
+    <p class="hero-micro">Bez obaveza · Bez skrivenih troškova</p>
     <div class="hero-stats">
       <div class="hero-stat"><span class="num">24h</span><span class="lbl">Rok izrade</span></div>
-      <div class="hero-stat"><span class="num">6.000</span><span class="lbl">Dinara ukupno</span></div>
+      <div class="hero-stat"><span class="num">6.000 din</span><span class="lbl">Ukupna cena</span></div>
       <div class="hero-stat"><span class="num">1</span><span class="lbl">Besplatna revizija</span></div>
       <div class="hero-stat"><span class="num">100%</span><span class="lbl">Mobilno responzivna</span></div>
     </div>
   </div>
 </section>
+
+<!-- ========== ŠTA VAM TREBA (NOVO) ========== -->
+<section class="needed-bg" id="sta-vam-treba">
+  <div class="container">
+    <div class="text-center">
+      <p class="section-label">Pre nego što počnete</p>
+      <h2 class="section-title">Šta će vam biti potrebno?</h2>
+      <p class="section-sub">Sve što vam treba je 10 minuta da popunite upitnik. Na osnovu datih podataka pravimo kompletnu landing stranicu.</p>
+    </div>
+    <div class="needed-grid">
+      <ul class="needed-list">
+        <li><span class="needed-check">✓</span> Naziv firme ili brend</li>
+        <li><span class="needed-check">✓</span> Opis usluge ili proizvoda koji nudite</li>
+        <li><span class="needed-check">✓</span> Fotografije (ako ih imate — nisu obavezne)</li>
+        <li><span class="needed-check">✓</span> Logo (ako ga imate — nije obavezan)</li>
+        <li><span class="needed-check">✓</span> Oko 10 minuta slobodnog vremena</li>
+      </ul>
+      <div class="needed-callout">
+        <p><strong>Ne treba vam ništa posebno pripremljeno.</strong> Naš upitnik je osmišljen tako da vas vodi kroz sve što nam je potrebno — korak po korak.</p>
+        <p>Što detaljnije odgovorite na pitanja, to ćemo preciznije napraviti stranicu koja odgovara vašem biznisu. Fotografije i logo možete dodati i naknadno — u fazi revizije.</p>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top: 40px;">
+      <a href="https://draganapivljakovic-ship-it.github.io/upitnik/" class="btn-primary" target="_blank" rel="noopener">⚡ Započnite izradu landing stranice</a>
+      <p style="font-size:13px;color:var(--muted);margin-top:10px;">Popunjavanje traje oko 10 minuta</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== KAKO IZGLEDA PROCES (5 koraka) ========== -->
 <section class="how-bg" id="kako-funkcionise">
   <div class="container">
     <div class="text-center">
       <p class="section-label">Proces</p>
-      <h2 class="section-title">Kako funkcioniše?</h2>
-      <p class="section-sub">Tri koraka od tvog klika do gotove landing stranice.</p>
+      <h2 class="section-title">Kako izgleda proces?</h2>
+      <p class="section-sub">Pet jasnih koraka — od popunjenog upitnika do live landing stranice.</p>
     </div>
     <div class="steps">
       <div class="step-card">
         <div class="step-num">1</div>
-        <h3>Uplati depozit i popuni upitnik</h3>
-        <p>Uplati 500 dinara na račun kao rezervaciju termina. Zatim popuni kratki upitnik o svom biznisu — to je sve što nam treba da počnemo.</p>
-        <div class="step-amount">💳 500 dinara · odmah</div>
+        <h3>Popunjavate upitnik</h3>
+        <p>Upitnik zamenjuje sastanak od sat vremena. Pitamo vas sve što trebamo da znamo o vašem biznisu i ciljevima.</p>
+        <div class="step-amount">⏱ ~10 minuta</div>
       </div>
       <div class="step-card">
         <div class="step-num">2</div>
-        <h3>Pravimo tvoju stranicu</h3>
-        <p>U roku od 24 sata dobijaš modernu, mobilno responzivnu landing stranicu prilagođenu tvom biznisu — izgled, tekst i sve što treba da konvertuje posetioce u klijente.</p>
-        <div class="step-amount">⏱ Isporuka u roku od 24h</div>
+        <h3>Plaćate izradu idejnog projekta</h3>
+        <p>Uplata od 500 dinara pokriva izradu idejnog projekta i pokreće proces. Ostatak plaćate tek kada vidite rezultat.</p>
+        <div class="step-amount">💳 500 dinara · izrada idejnog projekta</div>
       </div>
       <div class="step-card">
         <div class="step-num">3</div>
-        <h3>Sviđa ti se? Doplati ostatak</h3>
-        <p>Pogledaš, komentarišeš, unesemo jednu reviziju po tvojim napomenama. Ako si zadovoljna/zadovoljan — doplatiš još 5.500 din i stranica je tvoja, deployovana i gotova.</p>
-        <div class="step-amount">✅ 5.500 dinara · samo ako si zadovoljna/zadovoljan</div>
+        <h3>Izrađujemo prvu verziju</h3>
+        <p>Na osnovu vaših odgovora pravimo modernu, responzivnu landing stranicu prilagođenu vašem biznisu i kampanji.</p>
+        <div class="step-amount">⚡ Počinjemo odmah</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">4</div>
+        <h3>Za 24h pregledate predlog</h3>
+        <p>Dobijate link ka gotovoj stranici. Pregledate, komentarišete — unosimo jednu rundu izmena po vašim napomenama.</p>
+        <div class="step-amount">✏️ 1 besplatna revizija</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">5</div>
+        <h3>Ako vam odgovara — završavamo</h3>
+        <p>Doplatiš preostalih 5.500 din i stranica je deployovana, živa i dostupna. Ako nisi zadovoljan — ostatak ne plaćaš.</p>
+        <div class="step-amount">✅ 5.500 din · samo ako ste zadovoljni</div>
       </div>
     </div>
   </div>
 </section>
+
+<!-- ========== ŠTA DOBIJAŠ + CENA + GARANCIJA ========== -->
 <section id="ponuda">
   <div class="container">
     <div class="offer-grid">
@@ -215,86 +374,43 @@
         <p class="section-label">Šta dobijaš</p>
         <h2 class="section-title">Sve što treba<br>da stranica radi za tebe</h2>
         <ul class="offer-list" style="margin-top: 28px;">
-          <li><span class="icon">⚡</span><span><strong>Isporuka za 24 sata</strong> — od uplate depozita do gotove stranice. Bez čekanja nedeljama.</span></li>
+          <li><span class="icon">⚡</span><span><strong>Isporuka za 24 sata</strong> — od uplate za idejni projekat do gotove stranice. Bez čekanja nedeljama.</span></li>
           <li><span class="icon">📱</span><span><strong>Mobilno responzivan dizajn</strong> — savršeno izgleda na telefonu, tabletu i računaru.</span></li>
           <li><span class="icon">🎯</span><span><strong>Fokus na konverziju</strong> — stranica je projektovana da posetilac postane klijent.</span></li>
           <li><span class="icon">✏️</span><span><strong>1 besplatna revizija</strong> — imaš pravo na jednu rundu izmena pre finalne isporuke.</span></li>
           <li><span class="icon">💬</span><span><strong>Forma za kontakt</strong> — upiti stižu direktno na tvoj mejl, odmah i bez komplikacija.</span></li>
           <li><span class="icon">⚙️</span><span><strong>Deployovanje i postavljanje</strong> — stranica je živa i dostupna čim potvrdiš finalnu verziju.</span></li>
         </ul>
+
+        <!-- BEZ RIZIKA BLOCK -->
+        <div class="guarantee-block">
+          <div class="gb-icon">🛡️</div>
+          <div>
+            <h3>Bez rizika</h3>
+            <p>Prvo pregledate gotovu landing stranicu — pa tek onda odlučujete. Ako vam se ne dopadne rezultat, niste u obavezi da platite ostatak iznosa. Uplata za idejni projekat (500 din) ostaje kod nas kao naknada za vreme i rad — ništa više.</p>
+          </div>
+        </div>
       </div>
+
       <div>
         <div class="price-card">
           <div class="tag">💳 Cenovnik</div>
           <div class="price-big">6.000 din</div>
           <div class="price-sub">Ukupna cena · plaćaš u 2 koraka</div>
           <div class="price-breakdown">
-            <div class="price-row"><span class="label">Depozit (odmah)</span><span class="amount highlight">500 din</span></div>
+            <div class="price-row"><span class="label">Idejni projekat (odmah)</span><span class="amount highlight">500 din</span></div>
             <div class="price-row"><span class="label">Ostatak (nakon pregleda)</span><span class="amount highlight">5.500 din</span></div>
             <div class="price-row"><span class="label">Rok isporuke</span><span class="amount">24 sata</span></div>
             <div class="price-row"><span class="label">Revizije</span><span class="amount">1 besplatna</span></div>
           </div>
-          <div class="guarantee">🛡 Ne sviđa ti se rezultat? Depozit od 500 din ostaje kod nas kao naknada za vreme i rad — ostatak ne plaćaš.</div>
+          <div class="price-guarantee">🛡 Ostatak plaćaš samo ako si zadovoljan rezultatom. Bez iznenađenja.</div>
         </div>
       </div>
     </div>
   </div>
 </section>
-<section class="examples-bg" id="primeri">
-  <div class="container">
-    <div class="text-center">
-      <p class="section-label">Portfolio</p>
-      <h2 class="section-title">Primeri landing stranica</h2>
-      <p class="section-sub">Svaka stranica je prilagođena industriji, ciljnoj publici i cilju kampanje.</p>
-    </div>
-    <div class="examples-grid">
-      <div class="example-card">
-        <div class="example-browser"><div class="browser-dots"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div></div>
-        <img src="/Klima.png" alt="Klima uređaji landing stranica" class="example-img">
-        <div class="example-info"><span class="example-type">Servis / Ugradnja</span><h3>Klima uređaji — lead generacija</h3></div>
-      </div>
-      <div class="example-card">
-        <div class="example-browser"><div class="browser-dots"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div></div>
-        <img src="/Aplikacija.png" alt="SaaS aplikacija landing stranica" class="example-img">
-        <div class="example-info"><span class="example-type">SaaS / Aplikacija</span><h3>Produktivnost aplikacija — registracija</h3></div>
-      </div>
-      <div class="example-card">
-        <div class="example-browser"><div class="browser-dots"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div></div>
-        <img src="/Suplement.png" alt="Suplementi landing stranica" class="example-img">
-        <div class="example-info"><span class="example-type">E-commerce / Zdravlje</span><h3>Suplementi — direktna prodaja</h3></div>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="payment-bg" id="uplata">
-  <div class="container">
-    <div class="text-center">
-      <p class="section-label">1. korak</p>
-      <h2 class="section-title">Podaci za uplatu depozita</h2>
-      <p class="section-sub">Uplati 500 dinara na račun ispod, pa popuni upitnik. Čim primimo uplatu, startujemo sa izradom.</p>
-    </div>
-    <div class="payment-box">
-      <h3>🏦 Podaci za prenos</h3>
-      <div class="payment-fields">
-        <div class="payment-row"><span class="key">Naziv primaoca</span><span class="val">Digitalna radionica</span></div>
-        <div class="payment-row">
-          <span class="key">Broj računa</span>
-          <span class="val" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end;">
-            265110031010883837
-            <button class="copy-btn" onclick="copyText(this, '265110031010883837')">Kopiraj</button>
-          </span>
-        </div>
-        <div class="payment-row"><span class="key">Adresa</span><span class="val">Steve Žigona 39, Beograd</span></div>
-        <div class="payment-row"><span class="key">Iznos</span><span class="val" style="color:var(--primary-dark)">500,00 RSD</span></div>
-        <div class="payment-row"><span class="key">Svrha uplate</span><span class="val">Idejni projekat — landing stranica</span></div>
-      </div>
-      <div class="payment-note">📩 <strong>Kada uplatiš</strong> — popuni upitnik klikom na dugme ispod. Navedi ime i kontakt kako bismo mogli da povežemo uplatu sa tvojim projektom.</div>
-    </div>
-    <div style="text-align:center; margin-top:36px;">
-      <a href="https://draganapivljakovic-ship-it.github.io/upitnik/" class="btn-primary" target="_blank" rel="noopener" style="display:inline-flex;">📋 Popuni upitnik i pokreni projekat</a>
-    </div>
-  </div>
-</section>
+
+<!-- ========== RECENZIJE (premešeno pre uplata sekcije) ========== -->
 <section id="recenzije">
   <div class="container">
     <div class="text-center">
@@ -320,6 +436,83 @@
     </div>
   </div>
 </section>
+
+<!-- ========== PRIMERI ========== -->
+<section class="examples-bg" id="primeri">
+  <div class="container">
+    <div class="text-center">
+      <p class="section-label">Portfolio</p>
+      <h2 class="section-title">Primeri landing stranica</h2>
+      <p class="section-sub">Svaka stranica je prilagođena industriji, ciljnoj publici i cilju kampanje.</p>
+    </div>
+    <div class="examples-grid">
+      <div class="example-card">
+        <div class="example-browser"><div class="browser-dots"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div></div>
+        <img src="https://raw.githubusercontent.com/draganapivljakovic-ship-it/landing-stranica-24h/main/Klima.png" alt="Klima uređaji landing stranica" class="example-img"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="example-img-placeholder" style="display:none; background: linear-gradient(135deg, #0e4a5a 0%, #1a6b7a 100%);">
+          <svg width="36" height="36" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          Klima uređaji — lead generacija
+        </div>
+        <div class="example-info"><span class="example-type">Servis / Ugradnja</span><h3>Klima uređaji — lead generacija</h3></div>
+      </div>
+      <div class="example-card">
+        <div class="example-browser"><div class="browser-dots"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div></div>
+        <img src="https://raw.githubusercontent.com/draganapivljakovic-ship-it/landing-stranica-24h/main/Aplikacija.png" alt="SaaS aplikacija landing stranica" class="example-img"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="example-img-placeholder" style="display:none; background: linear-gradient(135deg, #1e3a5f 0%, #2d5a8e 100%);">
+          <svg width="36" height="36" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 8.25h3m-3 3h3m-6 3h.008v.008H6.75V15z"/></svg>
+          Produktivnost aplikacija — registracija
+        </div>
+        <div class="example-info"><span class="example-type">SaaS / Aplikacija</span><h3>Produktivnost aplikacija — registracija</h3></div>
+      </div>
+      <div class="example-card">
+        <div class="example-browser"><div class="browser-dots"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div></div>
+        <img src="https://raw.githubusercontent.com/draganapivljakovic-ship-it/landing-stranica-24h/main/Suplement.png" alt="Suplementi landing stranica" class="example-img"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="example-img-placeholder" style="display:none; background: linear-gradient(135deg, #0F766E 0%, #14B8A6 100%);">
+          <svg width="36" height="36" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          Suplementi — direktna prodaja
+        </div>
+        <div class="example-info"><span class="example-type">E-commerce / Zdravlje</span><h3>Suplementi — direktna prodaja</h3></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== UPLATA ========== -->
+<section class="payment-bg" id="uplata">
+  <div class="container">
+    <div class="text-center">
+      <p class="section-label">1. korak</p>
+      <h2 class="section-title">Podaci za uplatu idejnog projekta</h2>
+      <p class="section-sub">Uplati 500 dinara za izradu idejnog projekta, pa popuni upitnik. Čim primimo uplatu, startujemo sa izradom.</p>
+    </div>
+    <div class="payment-box">
+      <h3>🏦 Podaci za prenos</h3>
+      <div class="payment-fields">
+        <div class="payment-row"><span class="key">Naziv primaoca</span><span class="val">Digitalna radionica</span></div>
+        <div class="payment-row">
+          <span class="key">Broj računa</span>
+          <span class="val" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end;">
+            265110031010883837
+            <button class="copy-btn" onclick="copyText(this, '265110031010883837')">Kopiraj</button>
+          </span>
+        </div>
+        <div class="payment-row"><span class="key">Adresa</span><span class="val">Steve Žigona 39, Beograd</span></div>
+        <div class="payment-row"><span class="key">Iznos</span><span class="val" style="color:var(--primary-dark)">500,00 RSD</span></div>
+        <div class="payment-row"><span class="key">Svrha uplate</span><span class="val">Idejni projekat — landing stranica</span></div>
+      </div>
+      <div class="payment-note">📩 <strong>Kada uplatiš</strong> — popuni upitnik klikom na dugme ispod. Navedi ime i kontakt kako bismo mogli da povežemo uplatu sa tvojim projektom.</div>
+    </div>
+    <div style="text-align:center; margin-top:36px;">
+      <a href="https://draganapivljakovic-ship-it.github.io/upitnik/" class="btn-primary" target="_blank" rel="noopener" style="display:inline-flex;">⚡ Započnite izradu landing stranice</a>
+      <p style="font-size:13px;color:var(--muted);margin-top:10px;">Popunjavanje upitnika traje oko 10 minuta</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== KONTAKT ========== -->
 <section class="form-section" id="kontakt">
   <div class="container">
     <div class="text-center">
@@ -355,17 +548,21 @@
     </div>
   </div>
 </section>
+
+<!-- ========== FINAL CTA ========== -->
 <section class="final-cta">
   <div class="container" style="position:relative;z-index:1;">
     <h2 class="section-title" style="margin-bottom:18px;">Spreman/a da počneš?</h2>
-    <p>Uplati 500 dinara, popuni upitnik — za 24 sata imaš gotovu landing stranicu.</p>
+    <p>Uplati 500 dinara za izradu idejnog projekta, popuni upitnik — za 24 sata imaš gotovu landing stranicu. Plaćaš ostatak samo ako si zadovoljan.</p>
     <div class="final-cta-btns">
       <a href="#uplata" class="btn-white">🏦 Podaci za uplatu</a>
-      <a href="https://draganapivljakovic-ship-it.github.io/upitnik/" class="btn-primary" target="_blank" rel="noopener">📋 Popuni upitnik ⚡</a>
+      <a href="https://draganapivljakovic-ship-it.github.io/upitnik/" class="btn-primary" target="_blank" rel="noopener">⚡ Započnite izradu landing stranice</a>
     </div>
-    <p style="margin-top:24px;font-size:13px;color:rgba(255,255,255,0.45);">✓ Isporuka za 24h · ✓ 1 besplatna revizija · ✓ Moderne tehnologije · ✓ Cena fiksna bez iznenađenja</p>
+    <p class="final-cta-micro">✓ Isporuka za 24h · ✓ 1 besplatna revizija · ✓ Moderne tehnologije · ✓ Cena fiksna bez iznenađenja</p>
   </div>
 </section>
+
+<!-- ========== FOOTER ========== -->
 <footer>
   <a href="https://www.digitalnaradionica.rs" class="footer-logo" target="_blank" rel="noopener">
     <img src="https://www.digitalnaradionica.rs/wp-content/uploads/2026/05/Logo-2-1.png.webp" alt="Logo" onerror="this.style.display='none'">
@@ -379,11 +576,20 @@
   <hr class="footer-divider">
   <p class="footer-copy">© 2026 Digitalna radionica · <a href="https://www.digitalnaradionica.rs">www.digitalnaradionica.rs</a></p>
 </footer>
+
+<!-- ========== WHATSAPP ========== -->
 <a href="https://wa.me/38169651298" class="whatsapp-btn" target="_blank" rel="noopener" aria-label="WhatsApp kontakt">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
   </svg>
 </a>
+
+<!-- ========== STICKY MOBILE CTA ========== -->
+<div class="sticky-mobile-cta">
+  <a href="https://draganapivljakovic-ship-it.github.io/upitnik/" target="_blank" rel="noopener">⚡ Započnite izradu — idejni projekat 500 din</a>
+  <p class="scta-micro">Isporuka za 24h · Plaćate ostatak samo ako ste zadovoljni</p>
+</div>
+
 <script>
   function copyText(btn, text) {
     navigator.clipboard.writeText(text).then(() => {
@@ -420,7 +626,6 @@
         status.textContent = '✓ Poruka je poslata! Javljamo se uskoro.';
         status.style.color = '#0F766E';
         btn.textContent = 'Poslato ✓';
-        // Meta Pixel — Contact event (upit sa landing stranice, pre upitnika)
         if(typeof fbq!=='undefined'){fbq('track','Contact');}
       } else { throw new Error(); }
     } catch {
